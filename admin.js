@@ -112,7 +112,7 @@ function showPreview(src) {
 function populateCategorySelect(products) {
   const select = document.getElementById('f_category');
   const known = [...new Set(products.map(p => p.category))];
-  const fallback = ['audio', 'smart-home', 'wearables', 'kitchen', 'fitness'];
+  const fallback = ['audio', 'smart-home', 'wearables', 'footwear', 'accessories', 'streetwear', 'womens-fashion'];
   const all = [...new Set([...known, ...fallback])];
   select.innerHTML = all.map(key => `<option value="${key}">${prettifyCategory(key)}</option>`).join('');
 }
@@ -249,18 +249,23 @@ function exportBackup() {
 // while the table is empty.
 // ------------------------------------------------------------
 const STARTER_PRODUCTS = [
+  // Tech
   { name: "Anker Soundcore Life Q30", category: "audio", price: "Rs 8,500", blurb: "Over-ear ANC headphones that punch well above their price — 40hr battery, app EQ.", why: "The one we recommend to anyone asking for their first \"good\" pair of headphones.", link: "#REPLACE-LINK-1", icon: "headphones", pick: true },
   { name: "JBL Flip 6", category: "audio", price: "Rs 12,900", blurb: "Rugged, waterproof bluetooth speaker with surprisingly deep bass for its size.", why: "Survived two monsoons and a trekking bag on our end — genuinely tough.", link: "#REPLACE-LINK-2", icon: "speaker", pick: false },
   { name: "Philips Hue White & Color Starter Kit", category: "smart-home", price: "Rs 14,200", blurb: "Three smart bulbs + hub. Millions of colors, scheduling, voice control.", why: "Still the most reliable smart lighting ecosystem — setup takes under 10 minutes.", link: "#REPLACE-LINK-3", icon: "bulb", pick: true },
-  { name: "Xiaomi Mi Smart Plug", category: "smart-home", price: "Rs 1,650", blurb: "Turns any outlet smart — schedule, remote toggle, and energy monitoring.", why: "The cheapest, lowest-effort way to dip a toe into home automation.", link: "#REPLACE-LINK-4", icon: "plug", pick: false },
   { name: "Amazfit GTS 4 Mini", category: "wearables", price: "Rs 9,900", blurb: "Slim AMOLED smartwatch, 2-week battery, 120+ sport modes, SpO2 tracking.", why: "Battery life alone puts it ahead of watches twice the price.", link: "#REPLACE-LINK-5", icon: "watch", pick: true },
   { name: "Mi Band 8", category: "wearables", price: "Rs 4,300", blurb: "The budget fitness band that just keeps getting better — sharp display, solid tracking.", why: "Our default \"just get this\" answer for anyone starting out with fitness tracking.", link: "#REPLACE-LINK-6", icon: "watch", pick: false },
-  { name: "Instant Pot Duo 7-in-1", category: "kitchen", price: "Rs 16,500", blurb: "Pressure cooker, slow cooker, rice cooker, steamer, and more, in one pot.", why: "Cuts daal-bhat prep time in half — the appliance we recommend most to new cooks.", link: "#REPLACE-LINK-7", icon: "pot", pick: true },
-  { name: "Nutribullet Pro 900", category: "kitchen", price: "Rs 7,800", blurb: "900W personal blender for smoothies, batters, and chutneys — dishwasher-safe cups.", why: "Chews through ice and fibrous veg without leaving chunks behind.", link: "#REPLACE-LINK-8", icon: "blender", pick: false },
-  { name: "Resistance Band Set (5-piece)", category: "fitness", price: "Rs 1,950", blurb: "Full range of resistance levels in a set small enough to pack in a bag.", why: "The single cheapest way to build a real home workout routine.", link: "#REPLACE-LINK-9", icon: "dumbbell", pick: false },
-  { name: "Adjustable Dumbbell Set (2x20kg)", category: "fitness", price: "Rs 22,000", blurb: "Space-saving dial-adjustable dumbbells replacing an entire rack of fixed weights.", why: "Saves floor space in small apartments without cutting workout variety.", link: "#REPLACE-LINK-10", icon: "dumbbell", pick: true },
   { name: "TP-Link Tapo C200 Security Camera", category: "smart-home", price: "Rs 3,400", blurb: "Pan-tilt indoor WiFi camera with night vision and motion alerts on your phone.", why: "Best value indoor cam we've tested — the app is actually pleasant to use.", link: "#REPLACE-LINK-11", icon: "camera", pick: false },
-  { name: "Fire-Boltt Ninja Call Pro Plus", category: "wearables", price: "Rs 3,800", blurb: "Bluetooth-calling smartwatch with a 1.83\" display at a genuinely low price.", why: "The best \"looks expensive, isn't\" pick on this whole shelf.", link: "#REPLACE-LINK-12", icon: "watch", pick: false }
+  { name: "Fire-Boltt Ninja Call Pro Plus", category: "wearables", price: "Rs 3,800", blurb: "Bluetooth-calling smartwatch with a 1.83\" display at a genuinely low price.", why: "The best \"looks expensive, isn't\" pick on this whole shelf.", link: "#REPLACE-LINK-12", icon: "watch", pick: false },
+  // Fashion
+  { name: "Adidas Samba OG (Replica-Free, Verified Seller)", category: "footwear", price: "Rs 6,500", blurb: "The classic low-top sneaker everyone's wearing right now — true to size, genuine leather upper.", why: "Checked seller has 4.8★ across 2,000+ orders and a real return policy — rare for sneakers on Daraz.", link: "#REPLACE-LINK-13", icon: "shoe", pick: true },
+  { name: "Men's Chunky Sole Sneakers", category: "footwear", price: "Rs 3,200", blurb: "Thick-sole streetwear sneakers, breathable mesh, good grip for Kathmandu's uneven pavements.", why: "Runs true to size — we confirmed with 6 buyer photos before listing this one.", link: "#REPLACE-LINK-14", icon: "shoe", pick: false },
+  { name: "Crossbody Canvas Sling Bag", category: "accessories", price: "Rs 1,450", blurb: "Everyday sling bag, water-resistant canvas, fits a phone, wallet, and water bottle.", why: "Held up through three months of daily commuting on our end.", link: "#REPLACE-LINK-15", icon: "bag", pick: true },
+  { name: "Polarized Aviator Sunglasses", category: "accessories", price: "Rs 990", blurb: "UV400 protection, polarized lenses that actually cut glare, not just tinted plastic.", why: "We checked — these are genuinely polarized, unlike most sub-Rs-1000 listings.", link: "#REPLACE-LINK-16", icon: "sunglasses", pick: false },
+  { name: "Oversized Cotton Hoodie", category: "streetwear", price: "Rs 1,650", blurb: "Heavyweight cotton fleece, drop-shoulder fit, holds shape after washing.", why: "Fabric doesn't pill after a few washes — we asked buyers directly before listing.", link: "#REPLACE-LINK-17", icon: "shirt", pick: false },
+  { name: "Cargo Pants, Straight Fit", category: "streetwear", price: "Rs 2,100", blurb: "Multi-pocket cargo pants in a straight cut, cotton-blend, doesn't sag after a day of wear.", why: "Size chart matches actual measurements — confirmed against 10+ buyer comments.", link: "#REPLACE-LINK-18", icon: "shirt", pick: true },
+  { name: "Women's Wrap Kurti Set", category: "womens-fashion", price: "Rs 2,400", blurb: "Wrap-style kurti with matching palazzo, breathable rayon fabric, everyday office-to-evening wear.", why: "Color doesn't run in the wash, per verified buyer photos over several months.", link: "#REPLACE-LINK-19", icon: "shirt", pick: true },
+  { name: "Layered Gold-Plated Bracelet Set", category: "womens-fashion", price: "Rs 1,100", blurb: "Set of 3 stackable bracelets, gold-plated, adjustable sizing.", why: "Doesn't tarnish after a month of daily wear, based on repeat buyer feedback.", link: "#REPLACE-LINK-20", icon: "ring", pick: false }
 ];
 
 async function seedStarterProducts() {

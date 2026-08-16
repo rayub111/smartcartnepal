@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SmartCart Nepal — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- LOGIN GATE -->
+<section id="loginScreen" class="admin-login">
+  <form id="loginForm" class="admin-login-box">
+    <h1 class="admin-title">SmartCart<span class="logo-accent">Nepal</span> <span class="mono admin-title-tag">/admin</span></h1>
+    <p class="admin-hint">Log in with the admin account you created in Supabase (Authentication → Users).</p>
+    <input type="email" id="emailInput" placeholder="Email" autocomplete="username" required>
+    <input type="password" id="passInput" placeholder="Password" autocomplete="current-password" required>
+    <button type="submit" class="admin-btn">Log in</button>
+    <p id="loginError" class="admin-error"></p>
+  </form>
+</section>
+
+<!-- ADMIN PANEL -->
+<section id="adminPanel" class="admin-panel" hidden>
+  <div class="wrap admin-wrap">
+    <div class="admin-header">
+      <h1 class="admin-title">SmartCart<span class="logo-accent">Nepal</span> <span class="mono admin-title-tag">/admin</span></h1>
+      <div class="admin-header-actions">
+        <a href="index.html" target="_blank" class="admin-link mono">View live site ↗</a>
+        <button id="logoutBtn" class="admin-textlink mono">Log out</button>
+      </div>
+    </div>
+
+    <div class="admin-grid">
+      <!-- FORM -->
+      <form id="productForm" class="admin-card">
+        <h2 id="formTitle">Add a product</h2>
+
+        <label>Name
+          <input type="text" id="f_name" required placeholder="e.g. Anker Soundcore Life Q30">
+        </label>
+
+        <label>Category
+          <select id="f_category"></select>
+        </label>
+
+        <div id="newCategoryRow" class="admin-inline" hidden>
+          <input type="text" id="f_newCategoryLabel" placeholder="New category name, e.g. Cameras">
+          <button type="button" id="addCategoryConfirm" class="admin-btn-small">Add</button>
+        </div>
+        <button type="button" id="showNewCategory" class="admin-textlink mono">+ Add a new category</button>
+
+        <label>Price
+          <input type="text" id="f_price" required placeholder="e.g. Rs 8,500">
+        </label>
+
+        <label>Short description
+          <textarea id="f_blurb" rows="2" required placeholder="1-2 sentences on what it is"></textarea>
+        </label>
+
+        <label>Why you picked it
+          <textarea id="f_why" rows="2" required placeholder="Your honest editorial note"></textarea>
+        </label>
+
+        <label>Affiliate link
+          <input type="url" id="f_link" required placeholder="https://...">
+        </label>
+
+        <label>Product photo
+          <input type="file" id="f_imageFile" accept="image/*">
+        </label>
+        <p class="admin-or mono">— or —</p>
+        <label>Image URL
+          <input type="text" id="f_imageUrl" placeholder="https://... (optional if uploading a file)">
+        </label>
+        <img id="imagePreview" class="admin-preview-img" hidden>
+
+        <label class="admin-checkbox">
+          <input type="checkbox" id="f_pick">
+          Mark as Curator's Pick
+        </label>
+
+        <div class="admin-form-actions">
+          <button type="submit" class="admin-btn">Save product</button>
+          <button type="button" id="cancelEdit" class="admin-btn-secondary" hidden>Cancel edit</button>
+        </div>
+        <p id="formStatus" class="admin-status"></p>
+      </form>
+
+      <!-- LIST -->
+      <div class="admin-card">
+        <h2>Your products <span id="countTag" class="mono"></span></h2>
+        <p class="admin-hint">These are live on the public site immediately for everyone, on every device.</p>
+        <button id="seedBtn" class="admin-btn-secondary" hidden>Load starter products (one-time)</button>
+        <div id="adminList" class="admin-list"></div>
+        <button id="exportBtn" class="admin-btn admin-export">Download backup (JSON)</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="shared.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
